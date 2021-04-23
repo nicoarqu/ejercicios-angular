@@ -17,7 +17,7 @@ export class OrderComponent implements OnInit {
       new Producto('123', 'Arroz', 1350, ''),
       new Producto('125', 'Huevos', 880, ''),
       new Producto('125', 'Fideos', 720, ''),
-      new Producto('22', 'Huevos', 880, ''),
+      new Producto('22', 'Quinoa', 1780, ''),
       new Producto('120', 'Jalea', 100, ''),
       new Producto('125', 'Cereal', 3500, ''),];
     this.quantity = [0, 0, 0, 0, 0, 0];

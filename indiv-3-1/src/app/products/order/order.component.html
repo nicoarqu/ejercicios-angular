@@ -10,9 +10,9 @@
         </thead>
         <tbody>
             <tr *ngFor="let p of products; let id = index">
-                <th scope="row">{{quantity[id]}}</th>
-                <td>{{p.name | uppercase}}</td>
-                <td>$ {{p.price | number: '2.'}}</td>
+                <th scope="row" [ngClass]="{'selected-product': quantity[id] > 0}">{{quantity[id]}}</th>
+                <td [ngClass]="{'selected-product': quantity[id] > 0}">{{p.name | uppercase}}</td>
+                <td [ngClass]="{'selected-product': quantity[id] > 0}">$ {{p.price | number: '2.'}}</td>
 
                 <td>
                     <div class="btn-group">
