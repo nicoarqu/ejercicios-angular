@@ -1,0 +1,90 @@
+<div class="container mt-4">
+    <p class="h5">Lista de Compra</p>
+    <table class="table table-striped my-2" *ngIf="products.length > 0">
+        <thead>
+            <tr>
+                <th scope="col">N°</th>
+                <th scope="col">Código</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of products; let id = index">
+                <th scope="row">{{id + 1}}</th>
+                <td>{{p.code}}</td>
+                <td>{{p.name}}</td>
+                <td>{{p.price}}</td>
+                <td>{{p.description}}</td>
+
+                <td *ngIf="!editMode"><button class="btn btn-outline-secondary" (click)="turnEditMode(id)"><i
+                            class="bi bi-pencil-square"></i> Editar</button></td>
+                <td><button class="btn btn-outline-danger" (click)="removeProduct(id)"><i class="bi bi-trash"></i>
+                        Borrar</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <p *ngIf="products.length === 0">No tienes productos en tu lista</p>
+</div>
+<div class="container">
+    <h5 class="h5" *ngIf="!editMode">Agregar producto</h5>
+    <h5 class="h5" *ngIf="editMode">Editar producto</h5>
+    <form class="form" [formGroup]="form">
+        <div class="form-group row">
+            <label for="code" class="col-4 col-form-label">Código</label>
+            <div class="col-8">
+                <input type="text" name="code" class="form-control" formControlName="code">
+                <div *ngIf="code.invalid && (code.dirty || code.touched)" class="alert alert-danger">
+                    <p *ngIf="code.errors.required">Por favor ingrese un código</p>
+                    <p *ngIf="code.errors.minlength">Debe tener mínimo 3 caracteres</p>
+                    <p *ngIf="code.errors.maxlength">Debe tener máximo 50 caracteres</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="name" class="col-4 col-form-label">Nombre</label>
+            <div class="col-8">
+                <input type="text" name="name" class="form-control" formControlName="name">
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                    <p *ngIf="name.errors.required">Por favor ingrese un nombre</p>
+                    <p *ngIf="name.errors.minlength">Debe tener mínimo 3 caracteres</p>
+                    <p *ngIf="name.errors.maxlength">Debe tener máximo 50 caracteres</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="price" class="col-4 col-form-label">Precio</label>
+            <div class="col-8">
+                <input type="number" name="price" class="form-control" formControlName="price" min="1">
+                <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+                    <p *ngIf="price.errors.required">Por favor ingresar un precio</p>
+                    <p *ngIf="price.errors.minlength">Debe tener mínimo 3 caracteres</p>
+                    <p *ngIf="price.errors.maxlength">Debe tener máximo 50 caracteres</p>
+                    <p *ngIf="price.errors.min">Debe ser mayor a 0</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="description" class="col-4 col-form-label">Descripción</label>
+            <div class="col-8">
+                <input type="text" name="description" class="form-control" formControlName="description">
+                <div *ngIf="description.invalid && (description.dirty || description.touched)"
+                    class="alert alert-danger">
+                    <p *ngIf="description.errors.required">Por favor ingrese una descripción</p>
+                    <p *ngIf="description.errors.minlength">Debe tener mínimo 3 caracteres</p>
+                    <p *ngIf="description.errors.maxlength">Debe tener máximo 50 caracteres</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-4"></div>
+            <div class="input-group col-8">
+                <button *ngIf="!editMode" type="button" class="btn btn-outline-success btn-block"
+                    (click)="addProduct()">Guardar</button>
+                <button *ngIf="editMode" type="button" class="btn btn-outline-success btn-blocky"
+                    (click)="editProduct()">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>
