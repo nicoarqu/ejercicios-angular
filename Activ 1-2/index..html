@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de promedio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+    <script>
+
+        const handleSubmit = (e) => {
+            const grade1 = Number(document.getElementById("nota1").value);
+            const grade2 = Number(document.getElementById("nota2").value);
+            const grade3 = Number(document.getElementById("nota3").value);
+            const grade4 = Number(document.getElementById("nota4").value);
+            const gradeE = Number(document.getElementById("notaexamen").value);
+            // Validación de notas parciales
+            if (!grade1 || grade1 < 1.0 || grade1 > 7.0) return false;
+            if (!grade2 || grade2 < 1.0 || grade2 > 7.0) return false;
+            if (!grade3 || grade3 < 1.0 || grade3 > 7.0) return false;
+            if (!grade4 || grade4 < 1.0 || grade4 > 7.0) return false;
+            if (!gradeE || gradeE < 1.0 || gradeE > 7.0) return false;
+            const gradeAvg = (grade1 + grade2 + grade3 + grade4) / 4;
+
+            const gradeFinal = 0.6 * gradeAvg + 0.4 * gradeE;
+            gradeFinal = gradeFinal.toFixed(2);
+
+            if (gradeFinal >= 4.0) {
+                alert(`Felicidades! Aprobaste el curso :) con nota ${gradeFinal}`);
+            } else {
+                alert(`Reprobaste el curso :( con nota ${gradeFinal}`);
+            }
+
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container m-3">
+        <h4 class="text-center">Cálcula tu promedio</h4>
+        <form class="row g-3 needs-validation" onsubmit="handleSubmit();">
+            <div class="col-md">
+                <label for="nota1" class="form-label">Nota 1</label>
+                <input type="number" class="form-control" id="nota1" required min="1.0" max="7.0" step="0.1">
+                <div class="invalid-feedback">
+                    Ingresa una nota válida con 1 decimal
+                </div>
+            </div>
+            <div class="col-md">
+                <label for="nota2" class="form-label">Nota 2</label>
+                <input type="number" class="form-control" id="nota2" required min="1.0" max="7.0" step="0.1">
+                <div class="invalid-feedback">
+                    Ingresa una nota válida con 1 decimal
+                </div>
+            </div>
+            <div class="col-md">
+                <label for="nota3" class="form-label">Nota 3</label>
+                <input type="number" class="form-control" id="nota3" required min="1.0" max="7.0" step="0.1">
+                <div class="invalid-feedback">
+                    Ingresa una nota válida con 1 decimal
+                </div>
+            </div>
+            <div class="col-md">
+                <label for="nota4" class="form-label">Nota 4</label>
+                <input type="number" class="form-control" id="nota4" required min="1.0" max="7.0" step="0.1">
+                <div class="invalid-feedback">
+                    Ingresa una nota válida con 1 decimal
+                </div>
+            </div>
+            <div class="col-md">
+                <label for="notaexamen" class="form-label">Nota Examen</label>
+                <input type="number" class="form-control" id="notaexamen" required min="1.0" max="7.0" step="0.1">
+                <div class="invalid-feedback">
+                    Ingresa una nota válida con 1 decimal
+                </div>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary">Calcular</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
